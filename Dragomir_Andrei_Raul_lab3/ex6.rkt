@@ -1,0 +1,21 @@
+#lang racket
+
+(define (f235 n)
+  (define (count-factor n p acc)
+    (if (= (remainder n p) 0)
+        (count-factor (/ n p) p (+ acc 1))
+        (cons acc n)))
+
+  (let* ([r2 (count-factor n 2 0)]
+         [a  (car r2)]
+         [n1 (cdr r2)]
+         [r3 (count-factor n1 3 0)]
+         [b  (car r3)]
+         [n2 (cdr r3)]
+         [r5 (count-factor n2 5 0)]
+         [c  (car r5)])
+    (list a b c)))
+
+(displayln "ex.6")
+(displayln (f235 23100)) 
+
